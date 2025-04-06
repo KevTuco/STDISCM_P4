@@ -67,11 +67,6 @@ VALUES
   (4, 13),  -- student4 enrolls in Course 13
   (5, 14);  -- student5 enrolls in Course 14
 
--- ========================================
--- Populate the Grades Database with 15 grade records.
--- Each record corresponds to one enrollment. Grades are given on a scale of 0.0 to 4.0.
--- ========================================
-
 INSERT INTO Grades (student_id, course_id, grade)
 VALUES
   (1, 1, 3.8),   -- student1 in Course 1

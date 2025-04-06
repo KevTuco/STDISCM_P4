@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\STDISCM_P4.props" />
+</Project>

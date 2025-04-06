@@ -1,0 +1,6 @@
+@STDISCM_P4_HostAddress = http://localhost:5280
+
+GET {{STDISCM_P4_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
