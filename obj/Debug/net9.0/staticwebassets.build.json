@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BpmCCVZBOKYTJysvANUO0BT5twTgT0ugJqLmDq+qatc=",
+  "Hash": "NA2A5PhDlHPOqdG6voBe9BmKEKAeluT5YsIAyIX2Oss=",
   "Source": "STDISCM_P4",
   "BasePath": "_content/STDISCM_P4",
   "Mode": "Default",
@@ -8,40 +8,40 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "STDISCM_P4\\wwwroot",
+      "Name": "STDISCM_P4/wwwroot",
       "Source": "STDISCM_P4",
-      "ContentRoot": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\",
+      "ContentRoot": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/",
       "BasePath": "_content/STDISCM_P4",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
+      "Identity": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-d3mq9q8vjh.gz",
       "SourceId": "STDISCM_P4",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/STDISCM_P4",
-      "RelativePath": "index#[.{fingerprint=v7opcorlcf}]?.html.gz",
+      "RelativePath": "index#[.{fingerprint=d3mq9q8vjh}]?.html.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html",
+      "RelatedAsset": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "5uyrwujriy",
-      "Integrity": "HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=",
+      "Fingerprint": "ghb6xachaa",
+      "Integrity": "pKh14vGTNnUVczuCGHelnOlNZJ8gak2nSmiMCkLmEio=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html"
+      "OriginalItemSpec": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html"
     },
     {
-      "Identity": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html",
+      "Identity": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html",
       "SourceId": "STDISCM_P4",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\",
+      "ContentRoot": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/",
       "BasePath": "_content/STDISCM_P4",
       "RelativePath": "index#[.{fingerprint}]?.html",
       "AssetKind": "All",
@@ -52,22 +52,22 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "v7opcorlcf",
-      "Integrity": "2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=",
+      "Fingerprint": "d3mq9q8vjh",
+      "Integrity": "WYOHWA2QRdpHuALmCF779LAh7HFFxJSqnkOkH8TJqrc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\index.html"
+      "OriginalItemSpec": "wwwroot/index.html"
     }
   ],
   "Endpoints": [
     {
-      "Route": "index.html",
-      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
+      "Route": "index.d3mq9q8vjh.html",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-d3mq9q8vjh.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000647668394"
+          "Quality": "0.000441306267"
         }
       ],
       "ResponseHeaders": [
@@ -77,152 +77,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1543"
+          "Value": "2265"
         },
         {
           "Name": "ETag",
-          "Value": "\"HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=\""
+          "Value": "\"pKh14vGTNnUVczuCGHelnOlNZJ8gak2nSmiMCkLmEio=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=\""
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo="
-        }
-      ]
-    },
-    {
-      "Route": "index.html",
-      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "5366"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo="
-        }
-      ]
-    },
-    {
-      "Route": "index.html.gz",
-      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1543"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg="
-        }
-      ]
-    },
-    {
-      "Route": "index.v7opcorlcf.html",
-      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000647668394"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1543"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
+          "Value": "Sun, 06 Apr 2025 23:50:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -242,13 +105,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=\""
+          "Value": "W/\"WYOHWA2QRdpHuALmCF779LAh7HFFxJSqnkOkH8TJqrc=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "v7opcorlcf"
+          "Value": "d3mq9q8vjh"
         },
         {
           "Name": "label",
@@ -256,13 +119,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo="
+          "Value": "sha256-WYOHWA2QRdpHuALmCF779LAh7HFFxJSqnkOkH8TJqrc="
         }
       ]
     },
     {
-      "Route": "index.v7opcorlcf.html",
-      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html",
+      "Route": "index.d3mq9q8vjh.html",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -271,7 +134,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5366"
+          "Value": "9102"
         },
         {
           "Name": "Content-Type",
@@ -279,11 +142,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=\""
+          "Value": "\"WYOHWA2QRdpHuALmCF779LAh7HFFxJSqnkOkH8TJqrc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
+          "Value": "Sun, 06 Apr 2025 23:50:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -293,7 +156,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "v7opcorlcf"
+          "Value": "d3mq9q8vjh"
         },
         {
           "Name": "label",
@@ -301,13 +164,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo="
+          "Value": "sha256-WYOHWA2QRdpHuALmCF779LAh7HFFxJSqnkOkH8TJqrc="
         }
       ]
     },
     {
-      "Route": "index.v7opcorlcf.html.gz",
-      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
+      "Route": "index.d3mq9q8vjh.html.gz",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-d3mq9q8vjh.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -316,7 +179,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1543"
+          "Value": "2265"
         },
         {
           "Name": "Content-Type",
@@ -324,11 +187,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=\""
+          "Value": "\"pKh14vGTNnUVczuCGHelnOlNZJ8gak2nSmiMCkLmEio=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
+          "Value": "Sun, 06 Apr 2025 23:50:45 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -346,7 +209,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "v7opcorlcf"
+          "Value": "d3mq9q8vjh"
         },
         {
           "Name": "label",
@@ -354,7 +217,144 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg="
+          "Value": "sha256-pKh14vGTNnUVczuCGHelnOlNZJ8gak2nSmiMCkLmEio="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-d3mq9q8vjh.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000441306267"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2265"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pKh14vGTNnUVczuCGHelnOlNZJ8gak2nSmiMCkLmEio=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 23:50:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"WYOHWA2QRdpHuALmCF779LAh7HFFxJSqnkOkH8TJqrc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WYOHWA2QRdpHuALmCF779LAh7HFFxJSqnkOkH8TJqrc="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9102"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WYOHWA2QRdpHuALmCF779LAh7HFFxJSqnkOkH8TJqrc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 23:50:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WYOHWA2QRdpHuALmCF779LAh7HFFxJSqnkOkH8TJqrc="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-d3mq9q8vjh.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2265"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"pKh14vGTNnUVczuCGHelnOlNZJ8gak2nSmiMCkLmEio=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 23:50:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-pKh14vGTNnUVczuCGHelnOlNZJ8gak2nSmiMCkLmEio="
         }
       ]
     }

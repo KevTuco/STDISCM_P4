@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\STDISCM_P4.csproj": {}
+    "/Users/miguelkua/Documents/GitHub/STDISCM_P4/STDISCM_P4.csproj": {}
   },
   "projects": {
-    "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\STDISCM_P4.csproj": {
+    "/Users/miguelkua/Documents/GitHub/STDISCM_P4/STDISCM_P4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\STDISCM_P4.csproj",
+        "projectUniqueName": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/STDISCM_P4.csproj",
         "projectName": "STDISCM_P4",
-        "projectPath": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\STDISCM_P4.csproj",
-        "packagesPath": "C:\\Users\\migur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\",
+        "projectPath": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/STDISCM_P4.csproj",
+        "packagesPath": "/Users/miguelkua/.nuget/packages/",
+        "outputPath": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\migur\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/miguelkua/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
