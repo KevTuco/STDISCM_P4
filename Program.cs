@@ -6,7 +6,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure JWT authentication
-var secretKey = "YourVeryStrongSecretKey"; // This should match the one used in AuthController
+var secretKey = "YourVeryVeryVerySecureSecretKey123!"; // This should match the one used in AuthController
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -44,7 +44,8 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-app.UseCors("AllowAll"); // Add before UseAuthentication()
+app.UseCors("AllowAll");
+app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

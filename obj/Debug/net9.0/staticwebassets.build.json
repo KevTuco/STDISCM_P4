@@ -1,12 +1,362 @@
 {
   "Version": 1,
-  "Hash": "icjxpQsTI4Hku/EzFhisXRgRVW+WWjqOw7thDIBFqv8=",
+  "Hash": "BpmCCVZBOKYTJysvANUO0BT5twTgT0ugJqLmDq+qatc=",
   "Source": "STDISCM_P4",
   "BasePath": "_content/STDISCM_P4",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "STDISCM_P4\\wwwroot",
+      "Source": "STDISCM_P4",
+      "ContentRoot": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\",
+      "BasePath": "_content/STDISCM_P4",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
+      "SourceId": "STDISCM_P4",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/STDISCM_P4",
+      "RelativePath": "index#[.{fingerprint=v7opcorlcf}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "5uyrwujriy",
+      "Integrity": "HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html",
+      "SourceId": "STDISCM_P4",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\",
+      "BasePath": "_content/STDISCM_P4",
+      "RelativePath": "index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "v7opcorlcf",
+      "Integrity": "2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000647668394"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1543"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5366"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1543"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg="
+        }
+      ]
+    },
+    {
+      "Route": "index.v7opcorlcf.html",
+      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000647668394"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1543"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "v7opcorlcf"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo="
+        }
+      ]
+    },
+    {
+      "Route": "index.v7opcorlcf.html",
+      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5366"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "v7opcorlcf"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2yJP4mreA705JyZvVF4w6P/PDz1NqA+ceVr4UNxEUdo="
+        }
+      ]
+    },
+    {
+      "Route": "index.v7opcorlcf.html.gz",
+      "AssetFile": "C:\\Users\\migur\\Desktop\\Project\\STDISCM_P4\\obj\\Debug\\net9.0\\compressed\\02reexvu0w-v7opcorlcf.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1543"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 06 Apr 2025 16:50:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "v7opcorlcf"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HTEQ0rY/JKtNs2ZIS9Eczv8HOnTtiSrge9yEiI1r5Dg="
+        }
+      ]
+    }
+  ]
 }

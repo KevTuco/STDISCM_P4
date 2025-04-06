@@ -1,7 +1,7 @@
-// Controllers/GradesController.cs
 using EnrollmentSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 
 namespace EnrollmentSystem.Controllers
 {
@@ -10,20 +10,39 @@ namespace EnrollmentSystem.Controllers
     [Authorize]
     public class GradesController : ControllerBase
     {
-        // Sample in-memory grades list.
-        private static readonly List<Grade> _grades = new List<Grade>
-        {
-            new Grade { GradeId = 1, StudentId = 1, CourseId = 1, GradeValue = 3.8 },
-            new Grade { GradeId = 2, StudentId = 1, CourseId = 2, GradeValue = 3.5 }
-        };
+        private const string DbPath = "./schema/Grades.db";
 
+        [HttpGet]
         [HttpGet]
         public IActionResult GetGrades()
         {
             int studentId = int.Parse(User.FindFirst("user_id")?.Value ?? "0");
-            var studentGrades = _grades.Where(g => g.StudentId == studentId).ToList();
-            return Ok(studentGrades);
+            var grades = new List<Grade>();
+
+            using var connection = new SqliteConnection("Data Source=./schema/Grades.db");
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT grade_id, student_id, course_id, grade FROM Grades WHERE student_id = $studentId";
+            command.Parameters.AddWithValue("$studentId", studentId);
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                // Use IsDBNull check before accessing columns
+                var grade = new Grade
+                {
+                    GradeId = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
+                    StudentId = reader.IsDBNull(1) ? 0 : reader.GetInt32(1),
+                    CourseId = reader.IsDBNull(2) ? 0 : reader.GetInt32(2),
+                    GradeValue = reader.IsDBNull(3) ? 0.0 : reader.GetDouble(3)
+                };
+                grades.Add(grade);
+            }
+
+            return Ok(grades);
         }
+
 
         [HttpPost("upload")]
         [Authorize(Roles = "teacher")]
@@ -34,18 +53,8 @@ namespace EnrollmentSystem.Controllers
                 return BadRequest(new { message = "Grade must be between 0.0 and 4.0" });
             }
 
-            // In a real application, persist the grade record in the database.
-            int newGradeId = _grades.Any() ? _grades.Max(g => g.GradeId) + 1 : 1;
-            var newGrade = new Grade
-            {
-                GradeId = newGradeId,
-                StudentId = request.StudentId,
-                CourseId = request.CourseId,
-                GradeValue = request.GradeValue
-            };
-
-            _grades.Add(newGrade);
-            return Ok(new { message = "Grade uploaded successfully" });
+            // Dummy logic for now since writing is not implemented
+            return Ok(new { message = "Grade uploaded successfully!" });
         }
     }
 }

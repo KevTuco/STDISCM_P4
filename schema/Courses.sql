@@ -1,6 +1,6 @@
 -- Create the Courses table
 CREATE TABLE Courses (
-    course_id SERIAL PRIMARY KEY,
+    course_id INTEGER PRIMARY KEY AUTOINCREMENT,
     course_name VARCHAR(100) NOT NULL,
     description TEXT,
     max_slots INT NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE Courses (
 
 -- Create the Enrollment table to track student course enrollments.
 CREATE TABLE Enrollment (
-    enrollment_id SERIAL PRIMARY KEY,
+    enrollment_id INTEGER PRIMARY KEY AUTOINCREMENT,
     student_id INT NOT NULL,  -- References the student in the Users table (user_id)
     course_id INT NOT NULL,   -- References the course in the Courses table
     enrollment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

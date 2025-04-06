@@ -1,5 +1,6 @@
 // Controllers/AuthController.cs
 using EnrollmentSystem.Models;
+using Microsoft.Data.Sqlite;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,32 +13,34 @@ namespace EnrollmentSystem.Controllers
     [Route("api/auth")]
     public class AuthController : ControllerBase
     {
-        // In a real application, validate against your user database.
-        private readonly List<User> _users = new List<User>
-        {
-            new User { UserId = 1, Username = "student1", Role = "student" },
-            new User { UserId = 2, Username = "teacher1", Role = "teacher" }
-        };
-
-        private readonly string _secretKey = "YourVeryStrongSecretKey"; // Use a secure key from configuration
+        private readonly string _secretKey = "YourVeryVeryVerySecureSecretKey123!"; // Use a secure key from configuration
 
         [HttpPost("login")]
         public IActionResult Login([FromBody] LoginRequest request)
         {
-            // For demonstration, we use hard-coded passwords.
-            if ((request.Username == "student1" && request.Password == "pass1") ||
-                (request.Username == "teacher1" && request.Password == "pass2"))
+            using var connection = new SqliteConnection("Data Source=./schema/Users.db");
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = @"
+                SELECT user_id, username, role
+                FROM Users
+                WHERE username = $username AND password_hash = $password";
+            command.Parameters.AddWithValue("$username", request.Username);
+            command.Parameters.AddWithValue("$password", request.Password); // hashed ideally
+
+            using var reader = command.ExecuteReader();
+            if (!reader.Read()) return Unauthorized(new { message = "Invalid credentials" });
+
+            var user = new User
             {
-                // Find user details
-                var user = _users.FirstOrDefault(u => u.Username == request.Username);
-                if (user == null)
-                    return Unauthorized(new { message = "Invalid credentials" });
+                UserId = reader.GetInt32(0),
+                Username = reader.GetString(1),
+                Role = reader.GetString(2)
+            };
 
-                var token = GenerateJwtToken(user);
-                return Ok(new { token });
-            }
-
-            return Unauthorized(new { message = "Invalid credentials" });
+            var token = GenerateJwtToken(user);
+            return Ok(new { token });
         }
 
         private string GenerateJwtToken(User user)

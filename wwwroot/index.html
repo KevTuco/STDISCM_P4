@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Online Enrollment System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Online Enrollment System</h1>
+    <!-- Login Section -->
+    <div id="login-section">
+      <h2>Login</h2>
+      <form id="login-form">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+    <!-- Dashboard Section -->
+    <div id="dashboard" class="hidden">
+      <h2>Dashboard</h2>
+      <p>Welcome, <span id="user-name"></span>!</p>
+      <button id="logout-button">Logout</button>
+      <hr>
+      <h3>Available Courses</h3>
+      <ul id="course-list"></ul>
+      <hr>
+      <h3>Your Grades</h3>
+      <ul id="grade-list"></ul>
+      <hr>
+      <h3>Enroll in a Course</h3>
+      <input type="number" id="enroll-course-id" placeholder="Enter Course ID">
+      <button id="enroll-button">Enroll</button>
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const loginSection = document.getElementById('login-section');
+    const dashboard = document.getElementById('dashboard');
+    const userNameDisplay = document.getElementById('user-name');
+    const courseList = document.getElementById('course-list');
+    const gradeList = document.getElementById('grade-list');
+    let jwtToken = null;
+
+    // Login handler
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      try {
+        const res = await fetch('http://localhost:5280/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          jwtToken = data.token;
+          userNameDisplay.textContent = username;
+          loginSection.classList.add('hidden');
+          dashboard.classList.remove('hidden');
+          loadCourses();
+          loadGrades();
+        } else {
+          alert(data.message || 'Login failed');
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        alert('Error logging in');
+      }
+    });
+
+    // Logout functionality
+    document.getElementById('logout-button').addEventListener('click', () => {
+      jwtToken = null;
+      dashboard.classList.add('hidden');
+      loginSection.classList.remove('hidden');
+    });
+
+    // Fetch available courses
+    async function loadCourses() {
+      try {
+        const res = await fetch('http://localhost:5280/api/courses', {
+          headers: { 'Authorization': 'Bearer ' + jwtToken }
+        });
+        const courses = await res.json();
+        courseList.innerHTML = '';
+        courses.forEach(course => {
+          const li = document.createElement('li');
+          li.textContent = `ID: ${course.courseId} - ${course.courseName}`;
+          courseList.appendChild(li);
+        });
+      } catch (error) {
+        console.error('Error loading courses:', error);
+      }
+    }
+
+
+    // Fetch grades for the logged-in student
+    async function loadGrades() {
+      try {
+        const res = await fetch('http://localhost:5280/api/grades', {
+          headers: { 'Authorization': 'Bearer ' + jwtToken }
+        });
+        const grades = await res.json();
+        gradeList.innerHTML = '';
+        grades.forEach(grade => {
+          const li = document.createElement('li');
+          li.textContent = `Course ID: ${grade.courseId} - Grade: ${grade.gradeValue}`;
+          gradeList.appendChild(li);
+        });
+      } catch (error) {
+        console.error('Error loading grades:', error);
+      }
+    }
+
+
+    // Enroll in a course
+    document.getElementById('enroll-button').addEventListener('click', async () => {
+      const courseId = document.getElementById('enroll-course-id').value;
+      try {
+        const res = await fetch('http://localhost:5280/api/enroll', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + jwtToken
+          },
+          body: JSON.stringify({ course_id: courseId })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          alert('Enrolled successfully!');
+          loadCourses();
+          loadGrades();
+        } else {
+          alert(data.message || 'Enrollment failed');
+        }
+      } catch (error) {
+        console.error('Enrollment error:', error);
+      }
+    });
+  </script>
+</body>
+</html>

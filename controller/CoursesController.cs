@@ -1,7 +1,7 @@
-// Controllers/CoursesController.cs
 using EnrollmentSystem.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 
 namespace EnrollmentSystem.Controllers
 {
@@ -10,39 +10,40 @@ namespace EnrollmentSystem.Controllers
     [Authorize]
     public class CoursesController : ControllerBase
     {
-        // Sample in-memory course data.
-        private readonly List<Course> _courses = new List<Course>
-        {
-            new Course { CourseId = 1, CourseName = "Math 101", TeacherId = 2 },
-            new Course { CourseId = 2, CourseName = "Physics 101", TeacherId = 2 },
-            new Course { CourseId = 3, CourseName = "Chemistry 101", TeacherId = 2 }
-        };
-
-        // In-memory enrollment list (for demonstration only)
-        private static readonly List<(int StudentId, int CourseId)> _enrollments = new List<(int, int)>();
+        private const string DbPath = "./schema/Courses.db";
 
         [HttpGet]
         public IActionResult GetCourses()
         {
-            return Ok(_courses);
+            var courses = new List<Course>();
+
+            using var connection = new SqliteConnection($"Data Source={DbPath}");
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = "SELECT course_id, course_name, teacher_id FROM Courses";
+
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                var course = new Course
+                {
+                    CourseId = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
+                    CourseName = reader.IsDBNull(1) ? "Untitled" : reader.GetString(1),
+                    TeacherId = reader.IsDBNull(2) ? 0 : reader.GetInt32(2)
+                };
+                courses.Add(course);
+            }
+
+            return Ok(courses);
         }
+
 
         [HttpPost("enroll")]
         public IActionResult Enroll([FromBody] EnrollmentRequest request)
         {
-            // Get the current user's ID from the JWT claims
-            int studentId = int.Parse(User.FindFirst("user_id")?.Value ?? "0");
-
-            // Check for duplicate enrollment.
-            if (_enrollments.Any(e => e.StudentId == studentId && e.CourseId == request.CourseId))
-            {
-                return BadRequest(new { message = "Already enrolled in this course" });
-            }
-
-            // In a real system, insert into your database.
-            _enrollments.Add((studentId, request.CourseId));
-
-            return Ok(new { message = "Enrolled successfully" });
+            // Dummy logic since there's no enrollment table
+            return Ok(new { message = "Enrolled successfully!" });
         }
     }
 }
