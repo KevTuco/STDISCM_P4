@@ -181,11 +181,12 @@
       } else {
         alert(data.message || 'Login failed');
       }
-      function showTeacherDashboard(teacherId) {
+    });
+
+    function showTeacherDashboard(teacherId) {
         teacherDashboard.classList.remove('hidden');
         loadTeacherCourses(teacherId);
       }
-    });
 
     function showStudentTab(tab) {
       document.querySelectorAll('.student-tab').forEach(div => div.classList.add('hidden'));
@@ -271,6 +272,7 @@
       const select = document.getElementById('teacher-course-select');
       select.innerHTML = '<option value="">-- Select a Course --</option>';
       courses
+      .filter(c => parseInt(c.teacherId) === parseInt(teacherId))
         .forEach(c => {
           const option = document.createElement('option');
           option.value = c.courseId;
