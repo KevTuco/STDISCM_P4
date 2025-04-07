@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sD2RBuApZtWavLs5CVWY8rWQIHuMBeDuKMmIbIpgWyg=",
+  "Hash": "ads9VdxaCKpQc9rVC790saMOeHhW8IpWR1A9Np9Pu3g=",
   "Source": "STDISCM_P4",
   "BasePath": "_content/STDISCM_P4",
   "Mode": "Default",
@@ -17,12 +17,12 @@
   ],
   "Assets": [
     {
-      "Identity": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-jkjbmh12mk.gz",
+      "Identity": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-ebu9d0nrtk.gz",
       "SourceId": "STDISCM_P4",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/STDISCM_P4",
-      "RelativePath": "index#[.{fingerprint=jkjbmh12mk}]?.html.gz",
+      "RelativePath": "index#[.{fingerprint=ebu9d0nrtk}]?.html.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -31,8 +31,8 @@
       "RelatedAsset": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "xtokeoxgn5",
-      "Integrity": "SwdrB4XvVUfh3hd9FcK208NdLtkoKd7yYAw1gPn+OGU=",
+      "Fingerprint": "03f607f273",
+      "Integrity": "3H2AMEIu3vB7RBZm9dpD3iLGmdaIXvhr2yfBL2kKgCU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "jkjbmh12mk",
-      "Integrity": "LX5dbiJFXPLUZPrGmyhhMNS/Vj3J+4OI5NBtAo6pruo=",
+      "Fingerprint": "ebu9d0nrtk",
+      "Integrity": "ul68aMTfAfsoon9yzkVJMh5dM6vfELy0V23YAruRgwM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
@@ -61,13 +61,13 @@
   ],
   "Endpoints": [
     {
-      "Route": "index.html",
-      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-jkjbmh12mk.gz",
+      "Route": "index.ebu9d0nrtk.html",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-ebu9d0nrtk.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000345661943"
+          "Quality": "0.000394011032"
         }
       ],
       "ResponseHeaders": [
@@ -77,19 +77,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "2892"
+          "Value": "2537"
         },
         {
           "Name": "ETag",
-          "Value": "\"SwdrB4XvVUfh3hd9FcK208NdLtkoKd7yYAw1gPn+OGU=\""
+          "Value": "\"3H2AMEIu3vB7RBZm9dpD3iLGmdaIXvhr2yfBL2kKgCU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 01:17:36 GMT"
+          "Value": "Mon, 07 Apr 2025 01:52:49 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -105,18 +105,26 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"LX5dbiJFXPLUZPrGmyhhMNS/Vj3J+4OI5NBtAo6pruo=\""
+          "Value": "W/\"ul68aMTfAfsoon9yzkVJMh5dM6vfELy0V23YAruRgwM=\""
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "ebu9d0nrtk"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-LX5dbiJFXPLUZPrGmyhhMNS/Vj3J+4OI5NBtAo6pruo="
+          "Value": "sha256-ul68aMTfAfsoon9yzkVJMh5dM6vfELy0V23YAruRgwM="
         }
       ]
     },
     {
-      "Route": "index.html",
+      "Route": "index.ebu9d0nrtk.html",
       "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -126,7 +134,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13005"
+          "Value": "10959"
         },
         {
           "Name": "Content-Type",
@@ -134,121 +142,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LX5dbiJFXPLUZPrGmyhhMNS/Vj3J+4OI5NBtAo6pruo=\""
+          "Value": "\"ul68aMTfAfsoon9yzkVJMh5dM6vfELy0V23YAruRgwM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 01:17:36 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-LX5dbiJFXPLUZPrGmyhhMNS/Vj3J+4OI5NBtAo6pruo="
-        }
-      ]
-    },
-    {
-      "Route": "index.html.gz",
-      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-jkjbmh12mk.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2892"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"SwdrB4XvVUfh3hd9FcK208NdLtkoKd7yYAw1gPn+OGU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 01:17:36 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-SwdrB4XvVUfh3hd9FcK208NdLtkoKd7yYAw1gPn+OGU="
-        }
-      ]
-    },
-    {
-      "Route": "index.jkjbmh12mk.html",
-      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-jkjbmh12mk.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.000345661943"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2892"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"SwdrB4XvVUfh3hd9FcK208NdLtkoKd7yYAw1gPn+OGU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 01:17:36 GMT"
+          "Value": "Mon, 07 Apr 2025 01:52:49 GMT"
         },
         {
           "Name": "Cache-Control",
           "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"LX5dbiJFXPLUZPrGmyhhMNS/Vj3J+4OI5NBtAo6pruo=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "jkjbmh12mk"
+          "Value": "ebu9d0nrtk"
         },
         {
           "Name": "label",
@@ -256,13 +164,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-LX5dbiJFXPLUZPrGmyhhMNS/Vj3J+4OI5NBtAo6pruo="
+          "Value": "sha256-ul68aMTfAfsoon9yzkVJMh5dM6vfELy0V23YAruRgwM="
         }
       ]
     },
     {
-      "Route": "index.jkjbmh12mk.html",
-      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html",
+      "Route": "index.ebu9d0nrtk.html.gz",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-ebu9d0nrtk.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -271,7 +179,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13005"
+          "Value": "2537"
         },
         {
           "Name": "Content-Type",
@@ -279,56 +187,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"LX5dbiJFXPLUZPrGmyhhMNS/Vj3J+4OI5NBtAo6pruo=\""
+          "Value": "\"3H2AMEIu3vB7RBZm9dpD3iLGmdaIXvhr2yfBL2kKgCU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 01:17:36 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "jkjbmh12mk"
-        },
-        {
-          "Name": "label",
-          "Value": "index.html"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-LX5dbiJFXPLUZPrGmyhhMNS/Vj3J+4OI5NBtAo6pruo="
-        }
-      ]
-    },
-    {
-      "Route": "index.jkjbmh12mk.html.gz",
-      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-jkjbmh12mk.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "2892"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"SwdrB4XvVUfh3hd9FcK208NdLtkoKd7yYAw1gPn+OGU=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 07 Apr 2025 01:17:36 GMT"
+          "Value": "Mon, 07 Apr 2025 01:52:49 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -346,7 +209,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "jkjbmh12mk"
+          "Value": "ebu9d0nrtk"
         },
         {
           "Name": "label",
@@ -354,7 +217,144 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-SwdrB4XvVUfh3hd9FcK208NdLtkoKd7yYAw1gPn+OGU="
+          "Value": "sha256-3H2AMEIu3vB7RBZm9dpD3iLGmdaIXvhr2yfBL2kKgCU="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-ebu9d0nrtk.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000394011032"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2537"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3H2AMEIu3vB7RBZm9dpD3iLGmdaIXvhr2yfBL2kKgCU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 07 Apr 2025 01:52:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ul68aMTfAfsoon9yzkVJMh5dM6vfELy0V23YAruRgwM=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ul68aMTfAfsoon9yzkVJMh5dM6vfELy0V23YAruRgwM="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/wwwroot/index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "10959"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ul68aMTfAfsoon9yzkVJMh5dM6vfELy0V23YAruRgwM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 07 Apr 2025 01:52:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ul68aMTfAfsoon9yzkVJMh5dM6vfELy0V23YAruRgwM="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "/Users/miguelkua/Documents/GitHub/STDISCM_P4/obj/Debug/net9.0/compressed/02reexvu0w-ebu9d0nrtk.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2537"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3H2AMEIu3vB7RBZm9dpD3iLGmdaIXvhr2yfBL2kKgCU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 07 Apr 2025 01:52:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3H2AMEIu3vB7RBZm9dpD3iLGmdaIXvhr2yfBL2kKgCU="
         }
       ]
     }

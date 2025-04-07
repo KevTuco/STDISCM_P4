@@ -27,26 +27,27 @@ namespace EnrollmentSystem.Controllers
             using var reader = courseCmd.ExecuteReader();
             while (reader.Read())
             {
+                var teacherId = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
+
                 var course = new Course
                 {
                     CourseId = reader.GetInt32(0),
                     CourseName = reader.GetString(1),
                     Description = reader.IsDBNull(2) ? "N/A" : reader.GetString(2),
                     MaxSlots = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
+                    TeacherId = reader.IsDBNull(4) ? 0 : reader.GetInt32(4), // ✅ required
                     TeacherName = "Unknown"
                 };
 
-                int teacherId = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
 
-                if (teacherId != 0)
+
+                if (course.TeacherId != 0)
                 {
                     using var userConn = new SqliteConnection("Data Source=./schema/Users.db");
                     userConn.Open();
-
                     var userCmd = userConn.CreateCommand();
                     userCmd.CommandText = "SELECT username FROM Users WHERE user_id = $id";
-                    userCmd.Parameters.AddWithValue("$id", teacherId);
-
+                    userCmd.Parameters.AddWithValue("$id", course.TeacherId);
                     using var userReader = userCmd.ExecuteReader();
                     if (userReader.Read())
                     {
@@ -55,6 +56,7 @@ namespace EnrollmentSystem.Controllers
                 }
 
                 courses.Add(course);
+
             }
 
             return Ok(courses);
@@ -111,6 +113,16 @@ namespace EnrollmentSystem.Controllers
             insertCmd.Parameters.AddWithValue("$studentId", studentId);
             insertCmd.Parameters.AddWithValue("$courseId", request.CourseId);
             insertCmd.ExecuteNonQuery();
+
+            // Deduct a slot from the course
+            var updateSlotsCmd = courseConnection.CreateCommand();
+            updateSlotsCmd.CommandText = @"
+                UPDATE Courses
+                SET max_slots = max_slots - 1
+                WHERE course_id = $courseId AND max_slots > 0";
+            updateSlotsCmd.Parameters.AddWithValue("$courseId", request.CourseId);
+            updateSlotsCmd.ExecuteNonQuery();
+
 
             return Ok(new { message = "Enrolled successfully!" });
         }

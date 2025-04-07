@@ -271,7 +271,6 @@
       const select = document.getElementById('teacher-course-select');
       select.innerHTML = '<option value="">-- Select a Course --</option>';
       courses
-        .filter(c => c.teacherId === teacherId)
         .forEach(c => {
           const option = document.createElement('option');
           option.value = c.courseId;
