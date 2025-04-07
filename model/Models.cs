@@ -14,11 +14,13 @@ namespace EnrollmentSystem.Models
         public string Role { get; set; } // "student" or "teacher"
     }
 
-    public class Course 
+    public class Course
     {
         public int CourseId { get; set; }
-        public string CourseName { get; set; }
-        public int TeacherId { get; set; }
+        public string CourseName { get; set; } = string.Empty;
+        public string Description { get; set; } = "N/A";
+        public int MaxSlots { get; set; }
+        public string TeacherName { get; set; } = "Unknown"; // ✅ Add this line
     }
 
     public class EnrollmentRequest 

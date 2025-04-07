@@ -17,21 +17,43 @@ namespace EnrollmentSystem.Controllers
         {
             var courses = new List<Course>();
 
-            using var connection = new SqliteConnection($"Data Source={DbPath}");
-            connection.Open();
+            using var courseConn = new SqliteConnection("Data Source=./schema/Courses.db");
+            courseConn.Open();
 
-            var command = connection.CreateCommand();
-            command.CommandText = "SELECT course_id, course_name, teacher_id FROM Courses";
-
-            using var reader = command.ExecuteReader();
+            var courseCmd = courseConn.CreateCommand();
+            courseCmd.CommandText = @"
+                SELECT course_id, course_name, description, max_slots, teacher_id FROM Courses";
+            
+            using var reader = courseCmd.ExecuteReader();
             while (reader.Read())
             {
                 var course = new Course
                 {
-                    CourseId = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
-                    CourseName = reader.IsDBNull(1) ? "Untitled" : reader.GetString(1),
-                    TeacherId = reader.IsDBNull(2) ? 0 : reader.GetInt32(2)
+                    CourseId = reader.GetInt32(0),
+                    CourseName = reader.GetString(1),
+                    Description = reader.IsDBNull(2) ? "N/A" : reader.GetString(2),
+                    MaxSlots = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
+                    TeacherName = "Unknown"
                 };
+
+                int teacherId = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
+
+                if (teacherId != 0)
+                {
+                    using var userConn = new SqliteConnection("Data Source=./schema/Users.db");
+                    userConn.Open();
+
+                    var userCmd = userConn.CreateCommand();
+                    userCmd.CommandText = "SELECT username FROM Users WHERE user_id = $id";
+                    userCmd.Parameters.AddWithValue("$id", teacherId);
+
+                    using var userReader = userCmd.ExecuteReader();
+                    if (userReader.Read())
+                    {
+                        course.TeacherName = userReader.GetString(0);
+                    }
+                }
+
                 courses.Add(course);
             }
 
@@ -48,24 +70,21 @@ namespace EnrollmentSystem.Controllers
             using var courseConnection = new SqliteConnection($"Data Source={DbPath}");
             courseConnection.Open();
 
-            // Check grades using the Grades.db
             using var gradeConnection = new SqliteConnection("Data Source=./schema/Grades.db");
             gradeConnection.Open();
 
-
-            // 1. Check if already enrolled
+            // Already enrolled check
             var checkCmd = courseConnection.CreateCommand();
             checkCmd.CommandText = @"
                 SELECT COUNT(*) FROM Enrollment WHERE student_id = $studentId AND course_id = $courseId";
             checkCmd.Parameters.AddWithValue("$studentId", studentId);
             checkCmd.Parameters.AddWithValue("$courseId", request.CourseId);
-            long alreadyEnrolled = (long)checkCmd.ExecuteScalar();
-            if (alreadyEnrolled > 0)
+            if ((long)checkCmd.ExecuteScalar() > 0)
             {
                 return BadRequest(new { message = "Already enrolled in this course." });
             }
 
-            // 2. Check if course already passed
+            // Passed check
             var gradeCmd = gradeConnection.CreateCommand();
             gradeCmd.CommandText = @"
                 SELECT grade FROM Grades
@@ -84,7 +103,7 @@ namespace EnrollmentSystem.Controllers
                 }
             }
 
-            // 3. Proceed to enroll
+            // Enroll student
             var insertCmd = courseConnection.CreateCommand();
             insertCmd.CommandText = @"
                 INSERT INTO Enrollment (student_id, course_id)
@@ -95,7 +114,6 @@ namespace EnrollmentSystem.Controllers
 
             return Ok(new { message = "Enrolled successfully!" });
         }
-
 
         [HttpGet("enrolled")]
         [Authorize(Roles = "student")]
@@ -109,7 +127,7 @@ namespace EnrollmentSystem.Controllers
 
             var command = connection.CreateCommand();
             command.CommandText = @"
-                SELECT c.course_id, c.course_name, c.teacher_id
+                SELECT c.course_id, c.course_name, c.description, c.max_slots, c.teacher_id
                 FROM Courses c
                 JOIN Enrollment e ON c.course_id = e.course_id
                 WHERE e.student_id = $studentId";
@@ -118,12 +136,34 @@ namespace EnrollmentSystem.Controllers
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                enrolledCourses.Add(new Course
+                var course = new Course
                 {
                     CourseId = reader.GetInt32(0),
                     CourseName = reader.GetString(1),
-                    TeacherId = reader.GetInt32(2)
-                });
+                    Description = reader.IsDBNull(2) ? "N/A" : reader.GetString(2),
+                    MaxSlots = reader.IsDBNull(3) ? 0 : reader.GetInt32(3),
+                    TeacherName = "Unknown"
+                };
+
+                int teacherId = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
+
+                if (teacherId != 0)
+                {
+                    using var userConn = new SqliteConnection("Data Source=./schema/Users.db");
+                    userConn.Open();
+
+                    var userCmd = userConn.CreateCommand();
+                    userCmd.CommandText = "SELECT username FROM Users WHERE user_id = $id";
+                    userCmd.Parameters.AddWithValue("$id", teacherId);
+
+                    using var userReader = userCmd.ExecuteReader();
+                    if (userReader.Read())
+                    {
+                        course.TeacherName = userReader.GetString(0);
+                    }
+                }
+
+                enrolledCourses.Add(course);
             }
 
             return Ok(enrolledCourses);
@@ -135,7 +175,6 @@ namespace EnrollmentSystem.Controllers
         {
             var studentIds = new List<int>();
 
-            // 1. Open Courses.db to get enrolled student_ids
             using (var courseConn = new SqliteConnection("Data Source=./schema/Courses.db"))
             {
                 courseConn.Open();
@@ -150,7 +189,6 @@ namespace EnrollmentSystem.Controllers
                 }
             }
 
-            // 2. Open Users.db to fetch student usernames
             var students = new List<object>();
             using (var userConn = new SqliteConnection("Data Source=./schema/Users.db"))
             {
@@ -174,7 +212,5 @@ namespace EnrollmentSystem.Controllers
 
             return Ok(students);
         }
-
-
     }
 }
