@@ -57,19 +57,28 @@
         <h3>Your Enrolled Courses</h3>
         <ul id="enrolled-list"></ul>
         <h3>Enroll in a Course</h3>
-        <input type="number" id="enroll-course-id" placeholder="Enter Course ID">
-        <button id="enroll-button">Enroll</button>
+        <select id="enroll-course-select" required>
+          <option value="">-- Select a Course --</option>
+        </select>
+        <button id="enroll-button">Enroll</button>        
       </div>
 
       <!-- Teacher View -->
       <div id="teacher-dashboard" class="hidden">
         <h3>Upload Grades</h3>
         <form id="upload-grade-form"> 
-          <input type="number" id="student-id" placeholder="Student ID" required>
-          <input type="number" id="course-id" placeholder="Course ID" required>
+          <select id="teacher-course-select" required>
+            <option value="">-- Select a Course --</option>
+          </select>
+        
+          <select id="student-select" required>
+            <option value="">-- Select a Student --</option>
+          </select>
+        
           <input type="number" step="0.1" min="0" max="4" id="grade-value" placeholder="Grade (0.0 - 4.0)" required>
           <button type="submit">Upload Grade</button>
         </form>
+        
       </div>
     </div>
   </div>
@@ -156,6 +165,7 @@
     // Show teacher dashboard
     function showTeacherDashboard() {
       teacherDashboard.classList.remove('hidden');
+      loadTeacherCourses();
     }
 
     // Logout functionality
@@ -174,12 +184,25 @@
           headers: { 'Authorization': 'Bearer ' + jwtToken }
         });
         const courses = await res.json();
+        
+        // Display available courses
         courseList.innerHTML = '';
         courses.forEach(course => {
           const li = document.createElement('li');
           li.textContent = `ID: ${course.courseId} - ${course.courseName}`;
           courseList.appendChild(li);
         });
+
+        // Populate the select dropdown for enrolling
+        const enrollSelect = document.getElementById('enroll-course-select');
+        enrollSelect.innerHTML = '<option value="">-- Select a Course --</option>';
+        courses.forEach(course => {
+          const option = document.createElement('option');
+          option.value = course.courseId;
+          option.textContent = course.courseName;
+          enrollSelect.appendChild(option);
+        });
+
       } catch (error) {
         console.error('Error loading courses:', error);
       }
@@ -204,6 +227,60 @@
       }
     }
 
+    async function loadTeacherCourses() {
+      try {
+        const res = await fetch('http://localhost:5280/api/courses', {
+          headers: { 'Authorization': 'Bearer ' + jwtToken }
+        });
+        const courses = await res.json();
+        const payload = parseJwt(jwtToken);
+        const teacherId = parseInt(payload?.user_id);
+        const courseSelect = document.getElementById('teacher-course-select');
+        courseSelect.innerHTML = '<option value="">-- Select a Course --</option>';
+
+        courses
+          .filter(course => course.teacherId === teacherId)
+          .forEach(course => {
+            const option = document.createElement('option');
+            option.value = course.courseId;
+            option.textContent = course.courseName;
+            courseSelect.appendChild(option);
+          });
+
+        // Clear student dropdown when course changes
+        courseSelect.addEventListener('change', () => {
+          const selectedCourseId = courseSelect.value;
+          if (selectedCourseId) {
+            loadStudentsForCourse(selectedCourseId);
+          }
+        });
+
+      } catch (error) {
+        console.error('Error loading teacher courses:', error);
+      }
+    }
+
+    async function loadStudentsForCourse(courseId) {
+      try {
+        const res = await fetch(`http://localhost:5280/api/courses/${courseId}/enrollments`, {
+          headers: { 'Authorization': 'Bearer ' + jwtToken }
+        });
+        const students = await res.json(); // Should return an array of { userId, username }
+        const studentSelect = document.getElementById('student-select');
+        studentSelect.innerHTML = '<option value="">-- Select a Student --</option>';
+
+        students.forEach(student => {
+          const option = document.createElement('option');
+          option.value = student.userId;
+          option.textContent = student.username;
+          studentSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error loading students:', error);
+      }
+    }
+
+
 
     // Fetch grades
     async function loadGrades() {
@@ -225,7 +302,7 @@
 
     // Enroll in course
     document.getElementById('enroll-button').addEventListener('click', async () => {
-      const courseId = document.getElementById('enroll-course-id').value;
+      const courseId = document.getElementById('enroll-course-select').value;
       try {
         const res = await fetch('http://localhost:5280/api/courses/enroll', {
           method: 'POST',
@@ -251,8 +328,8 @@
     // Upload grade (teacher)
     document.getElementById('upload-grade-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const studentId = document.getElementById('student-id').value;
-      const courseId = document.getElementById('course-id').value;
+      const studentId = document.getElementById('student-select').value;
+      const courseId = document.getElementById('teacher-course-select').value;
       const gradeValue = parseFloat(document.getElementById('grade-value').value);
       try {
         const res = await fetch('http://localhost:5280/api/grades/upload', {

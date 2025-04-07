@@ -129,5 +129,52 @@ namespace EnrollmentSystem.Controllers
             return Ok(enrolledCourses);
         }
 
+        [HttpGet("{courseId}/enrollments")]
+        [Authorize(Roles = "teacher")]
+        public IActionResult GetEnrolledStudents(int courseId)
+        {
+            var studentIds = new List<int>();
+
+            // 1. Open Courses.db to get enrolled student_ids
+            using (var courseConn = new SqliteConnection("Data Source=./schema/Courses.db"))
+            {
+                courseConn.Open();
+                var cmd = courseConn.CreateCommand();
+                cmd.CommandText = "SELECT student_id FROM Enrollment WHERE course_id = $courseId";
+                cmd.Parameters.AddWithValue("$courseId", courseId);
+
+                using var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    studentIds.Add(reader.GetInt32(0));
+                }
+            }
+
+            // 2. Open Users.db to fetch student usernames
+            var students = new List<object>();
+            using (var userConn = new SqliteConnection("Data Source=./schema/Users.db"))
+            {
+                userConn.Open();
+                foreach (int id in studentIds)
+                {
+                    var userCmd = userConn.CreateCommand();
+                    userCmd.CommandText = "SELECT user_id, username FROM Users WHERE user_id = $id";
+                    userCmd.Parameters.AddWithValue("$id", id);
+                    using var userReader = userCmd.ExecuteReader();
+                    if (userReader.Read())
+                    {
+                        students.Add(new
+                        {
+                            userId = userReader.GetInt32(0),
+                            username = userReader.GetString(1)
+                        });
+                    }
+                }
+            }
+
+            return Ok(students);
+        }
+
+
     }
 }

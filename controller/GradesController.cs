@@ -11,8 +11,7 @@ namespace EnrollmentSystem.Controllers
     public class GradesController : ControllerBase
     {
         private const string DbPath = "./schema/Grades.db";
-
-        [HttpGet]
+     
         [HttpGet]
         public IActionResult GetGrades()
         {
@@ -43,7 +42,6 @@ namespace EnrollmentSystem.Controllers
             return Ok(grades);
         }
 
-
         [HttpPost("upload")]
         [Authorize(Roles = "teacher")]
         public IActionResult UploadGrade([FromBody] GradeUploadRequest request)
@@ -53,8 +51,46 @@ namespace EnrollmentSystem.Controllers
                 return BadRequest(new { message = "Grade must be between 0.0 and 4.0" });
             }
 
-            // Dummy logic for now since writing is not implemented
+            using var connection = new SqliteConnection("Data Source=./schema/Grades.db");
+            connection.Open();
+
+            // Optional: Check if grade already exists for this student & course
+            var checkCmd = connection.CreateCommand();
+            checkCmd.CommandText = @"
+                SELECT COUNT(*) FROM Grades 
+                WHERE student_id = $studentId AND course_id = $courseId";
+            checkCmd.Parameters.AddWithValue("$studentId", request.StudentId);
+            checkCmd.Parameters.AddWithValue("$courseId", request.CourseId);
+            var exists = (long)checkCmd.ExecuteScalar();
+
+            if (exists > 0)
+            {
+                // Overwrite grade if already exists
+                var updateCmd = connection.CreateCommand();
+                updateCmd.CommandText = @"
+                    UPDATE Grades
+                    SET grade = $grade
+                    WHERE student_id = $studentId AND course_id = $courseId";
+                updateCmd.Parameters.AddWithValue("$grade", request.GradeValue);
+                updateCmd.Parameters.AddWithValue("$studentId", request.StudentId);
+                updateCmd.Parameters.AddWithValue("$courseId", request.CourseId);
+                updateCmd.ExecuteNonQuery();
+            }
+            else
+            {
+                // Insert new grade
+                var insertCmd = connection.CreateCommand();
+                insertCmd.CommandText = @"
+                    INSERT INTO Grades (student_id, course_id, grade)
+                    VALUES ($studentId, $courseId, $grade)";
+                insertCmd.Parameters.AddWithValue("$studentId", request.StudentId);
+                insertCmd.Parameters.AddWithValue("$courseId", request.CourseId);
+                insertCmd.Parameters.AddWithValue("$grade", request.GradeValue);
+                insertCmd.ExecuteNonQuery();
+            }
+
             return Ok(new { message = "Grade uploaded successfully!" });
         }
+
     }
 }
