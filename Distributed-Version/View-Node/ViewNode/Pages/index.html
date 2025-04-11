@@ -1,21 +1,378 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>View Node Home</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 2em; }
-    nav { margin-bottom: 1em; }
-    button { margin-right: 0.5em; padding: 0.5em 1em; }
-  </style>
+    <meta charset="UTF-8">
+    <title>Online Enrollment System</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        input, button, select { padding: 10px; margin: 5px 0; width: 100%; box-sizing: border-box; }
+        .hidden { display: none; }
+        .tab-buttons { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .tab-buttons button { flex: 1; margin: 0 5px; }
+        table { width: 100%; border-collapse: collapse; }
+        table, th, td { border: 1px solid #000; }
+        th, td { padding: 8px; text-align: center; }
+        #error-tab { border: 1px solid red; color: red; padding: 10px; margin-top: 10px; }
+    </style>
 </head>
 <body>
-  <h1>Welcome to the View Node</h1>
-  <nav>
-    <button onclick="location.href='page1.html'">Page 1</button>
-    <button onclick="location.href='page2.html'">Page 2</button>
-    <button onclick="location.href='page3.html'">Page 3</button>
-  </nav>
-  <p>Select a page above to view its contents.</p>
+    <div class="container">
+        <h1>Online Enrollment System</h1>
+
+        <!-- Login Section -->
+        <div id="login-section">
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="hidden">
+            <h2>Dashboard</h2>
+            <p>Welcome, <span id="user-name"></span>!</p>
+            <button id="logout-button">Logout</button>
+            <hr>
+
+            <!-- Student View Tabs -->
+            <div id="student-dashboard" class="hidden">
+                <div class="tab-buttons">
+                    <button onclick="showStudentTab('courses')">View All Courses</button>
+                    <button onclick="showStudentTab('enrolled')">Enrolled Courses</button>
+                    <button onclick="showStudentTab('grades')">View Grades</button>
+                </div>
+
+                <div id="student-tab-courses" class="student-tab hidden">
+                    <h3>Available Courses</h3>
+                    <table id="course-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th><th>Name</th><th>Description</th><th>Slots</th><th>Teacher</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <h3>Enroll in a Course</h3>
+                    <select id="enroll-course-select" required>
+                        <option value="">-- Select a Course --</option>
+                    </select>
+                    <button id="enroll-button">Enroll</button>
+                </div>
+
+                <div id="student-tab-enrolled" class="student-tab hidden">
+                    <h3>Your Enrolled Courses</h3>
+                    <table id="enrolled-table">
+                        <thead>
+                            <tr><th>ID</th><th>Name</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div id="student-tab-grades" class="student-tab hidden">
+                    <h3>Your Grades</h3>
+                    <table id="grade-table">
+                        <thead>
+                            <tr><th>Course ID</th><th>Course Name</th><th>Grade</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Teacher View -->
+            <div id="teacher-dashboard" class="hidden">
+                <h3>Upload Grades</h3>
+                <form id="upload-grade-form"> 
+                    <select id="teacher-course-select" required>
+                        <option value="">-- Select a Course --</option>
+                    </select>
+                    <select id="student-select" required>
+                        <option value="">-- Select a Student --</option>
+                    </select>
+                    <select id="grade-value" required>
+                        <option value="">-- Select Grade --</option>
+                        <option>1.0</option><option>1.5</option><option>2.0</option>
+                        <option>2.5</option><option>3.0</option><option>3.5</option>
+                        <option>4.0</option><option>0.0</option>
+                    </select>
+                    <button type="submit">Upload Grade</button>
+                </form>
+            </div>
+
+            <!-- Error Tab -->
+            <div id="error-tab" class="hidden">
+                <h3>Error Details</h3>
+                <pre id="error-details"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set the broker's base URL (all API calls go through the broker)
+        const brokerBaseUrl = 'http://localhost:5000';
+        let jwtToken = null;
+    
+        const loginForm = document.getElementById('login-form');
+        const loginSection = document.getElementById('login-section');
+        const dashboard = document.getElementById('dashboard');
+        const userNameDisplay = document.getElementById('user-name');
+        const studentDashboard = document.getElementById('student-dashboard');
+        const teacherDashboard = document.getElementById('teacher-dashboard');
+        const errorTab = document.getElementById('error-tab');
+        const errorDetails = document.getElementById('error-details');
+    
+        // Login handler (calls the Broker, which forwards to AuthController)
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            try {
+                const res = await fetch(`${brokerBaseUrl}/api/forward/controller/AuthController`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'login', username, password })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    jwtToken = data.token;
+                    const payload = JSON.parse(atob(jwtToken.split('.')[1]));
+                    const role = payload.role || payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+    
+                    userNameDisplay.textContent = username;
+                    loginSection.classList.add('hidden');
+                    dashboard.classList.remove('hidden');
+                    hideError();
+                    if (role === 'student') {
+                        studentDashboard.classList.remove('hidden');
+                        showStudentTab('courses');
+                        loadCourses();
+                        loadGrades();
+                        loadEnrolledCourses();
+                    } else if (role === 'teacher') {
+                        teacherDashboard.classList.remove('hidden');
+                        loadTeacherCourses(payload.user_id);
+                    }
+                } else {
+                    showError(data.message || 'Login failed');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                showError('Error logging in: ' + error);
+            }
+        });
+    
+        function showStudentTab(tab) {
+            document.querySelectorAll('.student-tab').forEach(div => div.classList.add('hidden'));
+            document.getElementById(`student-tab-${tab}`).classList.remove('hidden');
+        }
+    
+        async function loadCourses() {
+            try {
+                const res = await fetch(`${brokerBaseUrl}/api/forward/controller/CoursesController`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + jwtToken
+                    },
+                    body: JSON.stringify({ action: 'getCourses' })
+                });
+                const courses = await res.json();
+                const tableBody = document.querySelector('#course-table tbody');
+                tableBody.innerHTML = '';
+                const select = document.getElementById('enroll-course-select');
+                select.innerHTML = '<option value="">-- Select a Course --</option>';
+                courses.forEach(c => {
+                    tableBody.innerHTML += `<tr>
+                        <td>${c.courseId}</td>
+                        <td>${c.courseName}</td>
+                        <td>${c.description}</td>
+                        <td>${c.maxSlots}</td>
+                        <td>${c.teacherName}</td>
+                        </tr>`;
+                    const option = document.createElement('option');
+                    option.value = c.courseId;
+                    option.textContent = c.courseName;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error loading courses:', error);
+                showError('Error loading courses: ' + error);
+            }
+        }
+    
+        async function loadEnrolledCourses() {
+            try {
+                const res = await fetch(`${brokerBaseUrl}/api/forward/controller/CoursesController`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + jwtToken
+                    },
+                    body: JSON.stringify({ action: 'getEnrolled' })
+                });
+                const courses = await res.json();
+                const tableBody = document.querySelector('#enrolled-table tbody');
+                tableBody.innerHTML = '';
+                courses.forEach(c => {
+                    tableBody.innerHTML += `<tr><td>${c.courseId}</td><td>${c.courseName}</td></tr>`;
+                });
+            } catch (error) {
+                console.error('Error loading enrolled courses:', error);
+                showError('Error loading enrolled courses: ' + error);
+            }
+        }
+    
+        async function loadGrades() {
+            try {
+                const res = await fetch(`${brokerBaseUrl}/api/forward/controller/GradesController`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + jwtToken
+                    },
+                    body: JSON.stringify({ action: 'getGrades' })
+                });
+                const grades = await res.json();
+                const tableBody = document.querySelector('#grade-table tbody');
+                tableBody.innerHTML = '';
+                grades.forEach(g => {
+                    tableBody.innerHTML += `<tr>
+                        <td>${g.courseId}</td>
+                        <td>${g.courseName || 'N/A'}</td>
+                        <td>${g.gradeValue}</td>
+                        </tr>`;
+                });
+            } catch (error) {
+                console.error('Error loading grades:', error);
+                showError('Error loading grades: ' + error);
+            }
+        }
+    
+        document.getElementById('logout-button').addEventListener('click', () => {
+            jwtToken = null;
+            location.reload();
+        });
+    
+        document.getElementById('enroll-button').addEventListener('click', async () => {
+            const courseId = document.getElementById('enroll-course-select').value;
+            if (!courseId) return alert('Select a course.');
+            try {
+                const res = await fetch(`${brokerBaseUrl}/api/forward/controller/CoursesController`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + jwtToken
+                    },
+                    body: JSON.stringify({ action: 'enroll', courseId: parseInt(courseId) })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    alert(data.message);
+                    loadCourses();
+                    loadEnrolledCourses();
+                    loadGrades();
+                } else {
+                    showError(data.message || 'Enrollment failed.');
+                }
+            } catch (error) {
+                console.error('Enrollment error:', error);
+                showError('Enrollment error: ' + error);
+            }
+        });
+    
+        async function loadTeacherCourses(teacherId) {
+            try {
+                const res = await fetch(`${brokerBaseUrl}/api/forward/controller/CoursesController`, {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + jwtToken 
+                    },
+                    body: JSON.stringify({ action: 'getCourses' })
+                });
+                const courses = await res.json();
+                const select = document.getElementById('teacher-course-select');
+                select.innerHTML = '<option value="">-- Select a Course --</option>';
+                courses.filter(c => parseInt(c.teacherId) === parseInt(teacherId))
+                    .forEach(c => {
+                        const option = document.createElement('option');
+                        option.value = c.courseId;
+                        option.textContent = c.courseName;
+                        select.appendChild(option);
+                    });
+    
+                select.addEventListener('change', async () => {
+                    const courseId = select.value;
+                    if(!courseId) return;
+                    try {
+                        const res = await fetch(`${brokerBaseUrl}/api/forward/controller/CoursesController`, {
+                            method: 'POST',
+                            headers: { 
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + jwtToken 
+                            },
+                            body: JSON.stringify({ action: 'getEnrollments', courseId: parseInt(courseId) })
+                        });
+                        const students = await res.json();
+                        const studentSelect = document.getElementById('student-select');
+                        studentSelect.innerHTML = '<option value="">-- Select a Student --</option>';
+                        students.forEach(s => {
+                            const opt = document.createElement('option');
+                            opt.value = s.userId;
+                            opt.textContent = s.username;
+                            studentSelect.appendChild(opt);
+                        });
+                    } catch (error) {
+                        console.error('Error loading enrolled students:', error);
+                        showError('Error loading enrolled students: ' + error);
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading teacher courses:', error);
+                showError('Error loading teacher courses: ' + error);
+            }
+        }
+    
+        document.getElementById('upload-grade-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const studentId = document.getElementById('student-select').value;
+            const courseId = document.getElementById('teacher-course-select').value;
+            const gradeValue = document.getElementById('grade-value').value;
+            if (!studentId || !courseId || !gradeValue) return alert('Fill all fields.');
+            try {
+                const res = await fetch(`${brokerBaseUrl}/api/forward/controller/GradesController`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + jwtToken
+                    },
+                    body: JSON.stringify({ action: 'uploadGrade', studentId, courseId, gradeValue: parseFloat(gradeValue) })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    alert(data.message || 'Grade submitted');
+                } else {
+                    showError(data.message || 'Grade submission failed.');
+                }
+            } catch (error) {
+                console.error('Error uploading grade:', error);
+                showError('Error uploading grade: ' + error);
+            }
+        });
+    
+        function showError(message) {
+            errorDetails.textContent = message;
+            errorTab.classList.remove('hidden');
+        }
+    
+        function hideError() {
+            errorDetails.textContent = '';
+            errorTab.classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
