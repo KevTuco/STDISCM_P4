@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "qH8byM4Z1vTyUuos52bDSwYlMJU6SyKe0TMCtsR1U+4=",
+  "Source": "BrokerNode",
+  "BasePath": "_content/BrokerNode",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

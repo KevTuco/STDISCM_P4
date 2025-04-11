@@ -1,0 +1,42 @@
+@model IEnumerable<NodeStatus>
+@{
+    ViewData["Title"] = "Node Dashboard";
+}
+<h1>Node Dashboard</h1>
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Node Name</th>
+            <th>Status</th>
+            <th>Activate/Deactivate</th>
+            <th>Latency (s)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var node in Model)
+    {
+        <tr>
+            <td>@node.Name</td>
+            <td>@(node.IsOnline ? "Online" : "Offline")</td>
+            <form asp-action="Update" method="post" style="display:inline;">
+            <td>
+                
+                    <input type="hidden" name="nodeName" value="@node.Name" />
+                    <input type="checkbox" name="isActivated" value="true" @(node.IsActivated ? "checked" : "") @(node.IsOnline ? "" : "disabled") />
+            </td>
+            <td>
+                    <input type="number" name="latency" value="@node.Latency" min="0" @(node.IsOnline ? "" : "disabled") />
+            </td>
+            <td>
+                    <button type="submit" class="btn btn-primary" @(node.IsOnline ? "" : "disabled")>Update</button>
+            </td>
+            </form>
+        </tr>
+    }
+    </tbody>
+</table>
